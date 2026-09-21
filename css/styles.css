@@ -1,0 +1,828 @@
+/* Zhixuan Deng — Urban & Spatial Portfolio
+   White ground, Times New Roman, hairlines, space.
+   Swap hero / cover / project images in HTML. */
+
+:root {
+  --paper: #ffffff;
+  --paper-inset: #ffffff;
+  --wash: #f4f4f4;
+  --ink: #111111;
+  --ink-soft: #555555;
+  --muted: #888888;
+  --rule: rgba(0, 0, 0, 0.12);
+  --rule-strong: rgba(0, 0, 0, 0.28);
+
+  --font: "Times New Roman", Times, serif;
+
+  --gutter: clamp(1.25rem, 4.8vw, 4.25rem);
+  --max: 70rem;
+  --max-narrow: 62rem;
+  --max-wide: 96rem;
+  --header-h: 3.5rem;
+
+  --step-0: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1rem + 0.7vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.15rem + 1.6vw, 2.25rem);
+  --step-3: clamp(2.4rem, 1.5rem + 4.2vw, 4.75rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  font-weight: 400;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+a:hover {
+  color: var(--ink-soft);
+}
+
+a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+figure {
+  margin: 0;
+}
+
+.wrap {
+  width: min(calc(100% - 2 * var(--gutter)), var(--max));
+  margin-inline: auto;
+}
+
+.wrap--narrow {
+  width: min(calc(100% - 2 * var(--gutter)), var(--max-narrow));
+}
+
+.wrap--wide {
+  width: min(calc(100% - 2 * var(--gutter)), var(--max-wide));
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  z-index: 20;
+  padding: 0.4rem 0.7rem;
+  background: var(--paper);
+}
+
+.skip-link:focus {
+  top: 0.6rem;
+}
+
+/* Header
+   -------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--header-h);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-project .site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.52);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 100%;
+}
+
+.site-mark {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.15rem 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+/* Shared section language
+   -------------------------------------------------- */
+
+.section-label {
+  margin-bottom: 0.85rem;
+  color: var(--ink-soft);
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-head {
+  margin-bottom: clamp(2rem, 5vh, 3.5rem);
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-head h2:not(.section-label) {
+  font-size: var(--step-2);
+}
+
+.section-head .section-label {
+  margin-bottom: 0;
+}
+
+section[id] {
+  scroll-margin-top: 4.75rem;
+}
+
+.placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.plate {
+  width: 100%;
+  background: var(--wash);
+  border: 1px solid var(--rule);
+}
+
+.plate--empty {
+  min-height: 8rem;
+  display: grid;
+  place-items: center;
+}
+
+.plate-note {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+/* 01 Hero
+   Landscape photograph fills the first screen.
+   .hero-copy is overlaid on the right; change --hero-text if needed.
+   Do not add a photo overlay/mask here.
+   -------------------------------------------------- */
+
+.hero {
+  --hero-text: #111111;
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  overflow: hidden;
+}
+
+.hero-media,
+.about-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-media img,
+.hero-media .plate,
+.about-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border: 0;
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: 1;
+  top: 40%;
+  right: clamp(1.5rem, 8vw, 7rem);
+  transform: translateY(-50%);
+  width: min(28rem, 42%);
+  color: var(--hero-text);
+  text-align: center;
+}
+
+.hero-copy h1 {
+  font-size: clamp(1.75rem, 1.25rem + 2.1vw, 2.9rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+}
+
+.hero-tagline,
+.hero-works {
+  margin-top: 1.45rem;
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.18rem);
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+}
+
+.hero-works {
+  margin-top: 1.3rem;
+}
+
+/* 02 Portfolio cover
+   -------------------------------------------------- */
+
+.cover {
+  padding-block: clamp(3.5rem, 10vh, 7rem);
+}
+
+.cover-verse {
+  max-width: 38em;
+  margin-inline: auto;
+  margin-bottom: 2.25rem;
+  color: #4a4a4a;
+  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.05rem);
+  font-style: normal;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.cover-plate {
+  margin-top: 1.75rem;
+}
+
+.cover-plate img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--paper-inset);
+  border: 1px solid var(--rule);
+}
+
+/* 03 Selected projects — six-column contents
+   1:1 plates in a horizontal row. If they do not fit, scroll.
+   -------------------------------------------------- */
+
+.projects {
+  padding-block: clamp(3.5rem, 10vh, 7rem);
+}
+
+.projects-board {
+  position: relative;
+}
+
+.project-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.85rem;
+  cursor: grab;
+  scrollbar-color: #111111 #e8e8e8;
+  scrollbar-width: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-viewport:active {
+  cursor: grabbing;
+}
+
+.project-viewport::-webkit-scrollbar {
+  height: 10px;
+}
+
+.project-viewport::-webkit-scrollbar-track {
+  background: #ececec;
+}
+
+.project-viewport::-webkit-scrollbar-thumb {
+  background: #111111;
+}
+
+.project-index {
+  --project-gap: 1.75rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: start;
+  gap: var(--project-gap);
+  width: max-content;
+  min-width: 100%;
+  padding-right: 2rem;
+}
+
+.project-item {
+  flex: 0 0 calc((min(100vw - 2 * var(--gutter), var(--max-wide)) - 4 * var(--project-gap)) / 5);
+}
+
+.project-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+.project-cover {
+  width: 100%;
+}
+
+.project-cover .plate,
+.project-cover img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-cover img,
+.project-sketch img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.project-no {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.project-title {
+  margin-top: 0.35rem;
+  width: 100%;
+  font-size: clamp(0.72rem, 0.55rem + 0.45vw, 0.9rem);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.project-link:hover .project-title {
+  color: var(--ink-soft);
+}
+
+.project-type {
+  margin-top: 0.28rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  max-width: 18ch;
+}
+
+.project-sketch {
+  width: 62%;
+  margin-top: 1.1rem;
+}
+
+.project-sketch .plate,
+.project-sketch img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.project-sketch .plate {
+  min-height: 0;
+}
+
+.project-cover .plate-note,
+.project-sketch .plate-note {
+  font-size: 0.58rem;
+}
+
+.project-scroll-ui {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.1rem;
+}
+
+.project-arrow {
+  appearance: none;
+  margin: 0;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-arrow:hover,
+.project-arrow:focus-visible {
+  border-color: var(--ink);
+}
+
+.project-arrow:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.project-scroll-hint {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 04 About — photo overlay
+   Right: education / research (white).
+   Left: ABOUT (center) + email / CV (lower, black).
+   -------------------------------------------------- */
+
+.about {
+  --about-text: #ffffff;
+  --about-ink: #111111;
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  overflow: hidden;
+}
+
+.about-left {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: clamp(1.5rem, 7vw, 6rem);
+  transform: translateY(-50%);
+}
+
+.about-heading {
+  color: var(--about-ink);
+  font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.about-contact {
+  position: absolute;
+  z-index: 1;
+  left: clamp(1.5rem, 7vw, 6rem);
+  bottom: calc(clamp(3.4rem, 12vh, 7rem) + 2.6rem);
+  color: var(--about-ink);
+  text-align: left;
+}
+
+.about-contact .about-title {
+  color: var(--about-ink);
+}
+
+.about-contact .about-block {
+  margin-bottom: 1.1rem;
+}
+
+.about-cv-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: inherit;
+  text-decoration: none;
+}
+
+.about-click {
+  margin-top: 0.25rem;
+  font-size: 1.08rem;
+}
+
+.about-personal {
+  position: absolute;
+  z-index: 1;
+  left: clamp(1.5rem, 7vw, 6rem);
+  bottom: clamp(3.4rem, 12vh, 7rem);
+  margin: 0;
+  color: var(--about-ink);
+  font-size: 1.08rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.about-copy {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: clamp(1.25rem, 6vw, 5.5rem);
+  transform: translateY(-50%);
+  width: min(28rem, 42%);
+  color: var(--about-text);
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1.6rem;
+  margin-top: 0;
+}
+
+.about-title {
+  display: inline-block;
+  margin: 0 0 0.55rem;
+  padding: 0.14rem 0.6rem 0.16rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--about-text);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.about-block p {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.about-block p + p {
+  margin-top: 0.28rem;
+}
+
+.about-block a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.about-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.about-list li + li {
+  margin-top: 0.15rem;
+}
+
+/* 05 Other works
+   -------------------------------------------------- */
+
+.other-work {
+  padding-block: clamp(3.5rem, 10vh, 7rem) clamp(2.5rem, 6vh, 4.5rem);
+}
+
+.other-note {
+  margin-top: 0.9rem;
+  max-width: none;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-style: normal;
+  line-height: 1.9;
+}
+
+.other-plate {
+  margin-top: 1.75rem;
+}
+
+.other-plate img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--paper-inset);
+  border: 1px solid var(--rule);
+}
+
+/* Footer
+   -------------------------------------------------- */
+
+.site-footer {
+  padding-block: 1.4rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.footer-inner p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+}
+
+/* Responsive
+   -------------------------------------------------- */
+
+@media (max-width: 860px) {
+  :root {
+    --header-h: auto;
+  }
+
+  .site-header {
+    height: auto;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: 0.85rem 0.75rem;
+    gap: 0.55rem;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    column-gap: 1rem;
+  }
+
+  .hero,
+  .about {
+    min-height: calc(100svh - 5.25rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-copy,
+  .about-copy {
+    right: 50%;
+    width: min(20rem, 86%);
+    transform: translate(50%, -50%);
+  }
+
+  .about-left {
+    top: 18%;
+    transform: none;
+  }
+
+  .about-contact {
+    left: clamp(1.25rem, 6vw, 4rem);
+  }
+
+  .hero-copy h1 {
+    letter-spacing: 0.1em;
+  }
+
+  .project-index {
+    --project-gap: 1.15rem;
+  }
+
+  .project-item {
+    flex-basis: calc((100vw - 2 * var(--gutter) - var(--project-gap)) / 2);
+  }
+}
+
+.project-hero {
+  --project-hero-text: rgba(255, 255, 255, 0.86);
+  --project-hero-face: "Microsoft YaHei", "Microsoft YaHei UI", SimHei, "PingFang SC", "Heiti SC", sans-serif;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  min-height: 28vh;
+  overflow: hidden;
+  background: var(--wash);
+}
+
+.project-hero-media,
+.project-hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+.project-hero-media img {
+  transform: scale(1.14);
+  transform-origin: center center;
+}
+
+.project-hero-media img.project-hero-shift-down {
+  object-position: center 78%;
+}
+
+.project-hero-copy {
+  position: absolute;
+  z-index: 1;
+  left: clamp(1.5rem, 6vw, 5rem);
+  top: 50%;
+  transform: translateY(-50%) scaleX(1.1);
+  transform-origin: left center;
+  color: var(--project-hero-text);
+  text-align: left;
+  font-family: var(--project-hero-face);
+  font-weight: 600;
+}
+
+.project-hero--ink {
+  --project-hero-text: rgba(51, 51, 51, 0.5);
+}
+
+.project-hero-copy .section-label {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin-bottom: 0.45rem;
+  color: var(--project-hero-text);
+  font-family: var(--project-hero-face);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+}
+
+.project-hero-copy h1 {
+  font-family: var(--project-hero-face);
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+.project-hero-sub {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 0.45rem;
+  font-family: var(--project-hero-face);
+  font-size: clamp(0.82rem, 0.7rem + 0.4vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.project-sheets {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 2.25rem 3.5rem;
+}
+
+.project-sheets img {
+  width: 100%;
+  height: auto;
+  background: var(--paper-inset);
+  border: 1px solid var(--rule);
+}
+
+.project-sheets img.project-sheet-ppt {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
